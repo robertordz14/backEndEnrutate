@@ -1,0 +1,152 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "My User Project CRUD",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:8080",
+    "basePath": "/api",    
+    "tags": [
+      {
+        "name": "States",
+        "description": "Paises de la API"
+      }
+    ],    
+    "schemes": ["http"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "paths": {
+        "/states": {
+          "get": {
+            "tags": ["States"],
+            "summary": "Get all states in system",
+            "responses": {
+              "200": {
+                "description": "OK",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            }
+          }
+        },
+        "/newStates": {
+            "post": {
+              "tags": ["States"],
+              "description": "Create new state in system",              
+              "parameters": [
+                {
+                  "name": "user",
+                  "in": "body",
+                  "description": "User that we want to create",
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                  }
+                }
+              ],
+              "produces": ["application/json"],              
+              "responses": {
+                "200": {
+                  "description": "New user is created",
+                  "schema": {
+                    "$ref": "#/definitions/User"
+                }
+            }
+        }
+    }
+},
+"/changeStates/{id}": {
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "Ingresa el ID",
+              "schema": {
+                "$ref": "#/definitions/User"
+              }
+            }
+          ],
+          "put": {
+            "summary": "Update user with give ID",
+            "tags": ["States"],
+            "parameters": [
+              {
+                "name": "user",
+                "in": "body",
+                "description": "User that you change",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "User is updated",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+          }
+      }
+  },
+"/deleteStates/{id}": {          
+          "delete": {
+            "summary": "Delete user with give ID",
+            "tags": ["States"],
+            "parameters": [
+              {
+                "name": "id",
+                "in": "path",
+                "required": true,
+                "description": "Ingresa el ID"              
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "User is deleted",
+                "schema": {
+                  "$ref": "#/definitions/User"
+                }
+              }
+          }
+      }
+  }
+}, 
+"definitions": {
+    "User": {
+        "required": ["Id", "ShortName", "LongName", "CountryId", "GeoId"],
+        "properties": {            
+            "ShortName": {
+            "type": "string"
+            },
+            "LongName": {
+            "type": "string"
+            },
+            "CountryId": {
+            "type": "number"              
+            },
+            "GeoId": {
+                "type": "number"              
+            }
+        },
+        "states": {
+            "type": "array",
+            "items": {
+            "type": "string"
+            }
+        }
+    }        
+  },
+  "Users": {
+    "type": "array",
+    "$ref": "#/definitions/User"
+  }
+}
+ 
+  
