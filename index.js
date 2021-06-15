@@ -43,6 +43,20 @@ router.route('/data/:id').get((req, res) => {
     });
 });
 
+router.route('/parada/:id').get((req, res) => {
+    const id = req.params.id;
+    conexion.query(`SELECT * FROM rutas.parada where paradaID = ${id};`, (err, result) => {
+        if(!err){
+            res.json(result);            
+            console.log(result);
+        }else{
+            console.log(err);
+        }
+    });
+});
+
+
+
 router.route('/lineOne/:id').get((req, res) => {    
     const id = req.params.id;
     conexion.query(`select cor.lat, cor.lng from coordenadasruta as cor join ruta as r on cor.rutaID = r.rutaID where cor.rutaID = ${id} and orientacion = 0;`, (err, result) => {
