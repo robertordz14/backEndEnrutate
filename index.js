@@ -45,7 +45,7 @@ router.route('/data/:id').get((req, res) => {
 
 router.route('/parada/:id').get((req, res) => {
     const id = req.params.id;
-    conexion.query(`SELECT * FROM rutas.parada where paradaID = ${id};`, (err, result) => {
+    conexion.query(`SELECT lat, lng FROM parada where paradaID = ${id};`, (err, result) => {
         if(!err){
             res.json(result);            
             console.log(result);
