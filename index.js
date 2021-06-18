@@ -33,7 +33,7 @@ app.listen(
 
 router.route('/data/:id').get((req, res) => {
     const id = req.params.id;
-    conexion.query(`SELECT nombre, frecuencia, estaActivos, rutaID FROM ruta WHERE estaActivos = 1 && rutaID IN (SELECT rutaID FROM rutaparada where paradaID = ${id} && estaActivo=1);`, (err, result) => {
+    conexion.query(`SELECT  nombre, frecuencia, inicio, fin, duracion, rutaID FROM ruta WHERE estaActivos = 1 && rutaID IN (SELECT rutaID FROM rutaparada where paradaID = ${id} && estaActivo=1);`, (err, result) => {
         if(!err){
             res.json(result);            
             console.log(result);
