@@ -43,6 +43,18 @@ router.route('/data/:id').get((req, res) => {
     });
 });
 
+router.route('/modal/:id').get((req, res) => {
+    const id = req.params.id;
+    conexion.query(`SELECT  nombre, frecuencia, inicio, fin, duracion, rutaID FROM ruta WHERE estaActivos = 1 && rutaID =${id};`, (err, result) => {
+        if(!err){
+            res.json(result);            
+            console.log(result);
+        }else{
+            console.log(err);
+        }
+    });
+});
+
 router.route('/parada/:id').get((req, res) => {
     const id = req.params.id;
     conexion.query(`SELECT lat, lng FROM parada where paradaID = ${id};`, (err, result) => {
