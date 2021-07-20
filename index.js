@@ -44,7 +44,12 @@ router.route('/data/:id').get((req, res) => {
             res.json(result);            
             console.log(result);
         }else{
-            console.log(err);
+            return res.status(404).json({
+                ok: false,
+                msg: "Ocurrio un error al cargar las rutas",
+                err
+            })
+            // console.log(err);
         }
     });
 });
